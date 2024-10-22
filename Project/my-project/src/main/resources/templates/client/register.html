@@ -3,9 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
 </head>
 <body>
- register account
- <h1 th:text="${user.username}">hello</h1>
+<!--<h1 th:text="${user.username}">hello</h1>-->
+<div class="container mx-5">
+    <div class="text-center">
+        <h1 class="">Register a new user</h1>
+    </div>
+    <form th:action="@{/register}" th:method="post" th:object="${user}">
+        <div class="mb-3">
+            <label for="fullName1" class="form-label">Full Name:</label>
+            <input type="text" class="form-control" id="fullName1"
+                   placeholder="Enter your full name."
+                   th:field="*{fullName}"
+            />
+            <span style="color: red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address:</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                   placeholder="info@xyz.com"
+                   th:field="*{email}"
+            />
+            <span style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="mobileNo1" class="form-label">Mobile No. :</label>
+            <input type="text" class="form-control" id="mobileNo1"
+                   placeholder="+91-98596 58000"
+                   th:field="*{phone}"
+            />
+            <span style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="exampleInputPassword1"
+                   placeholder="xxxxxxxxxx" aria-describedby="passwordHelp"
+                   th:field="*{password}"
+            />
+            <span style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            <div id="passwordHelp" class="form-text">Use at least one letter, one number and seven characters</div>
+        </div>
+        <div class="mb-3">
+            <label for="cfPass" class="form-label">Confirm Password:</label>
+            <input type="password" class="form-control" id="cfPass"
+                   placeholder="xxxxxxxxxx"
+                   th:field="*{confirmPassword}"
+            />
+            <span style="color: red" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>
+        </div>
+        <div class="text-center">
+            <strong class="">By signing up, you agree with our
+                <a href="" class="text-decoration-underline" style="color: #0a53be">Terms and Conditions</a>
+            </strong>
+        </div>
+        <div class="text-center my-3">
+            <a href="" class="btn btn-outline-primary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

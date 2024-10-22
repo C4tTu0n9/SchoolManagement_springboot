@@ -1,6 +1,11 @@
 package com.tuongpc.my_project.entity;
 
+import com.tuongpc.my_project.service.validator.StrongPassword;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,18 +22,25 @@ public class Users {
     private String username;
 
     @Column(name = "password_hash")
+    @NotBlank(message = "Password is required")
+//    @Size(min = 7, message = "Password must be at least 7 characters")
+    @StrongPassword
     private String passwordHash;
 
     @Column(name = "full_name")
+    @NotBlank(message = "Full name is required")
     private String fullName;
 
     @Column(name = "email")
+    @NotBlank(message = "Email is required")
+    @Email(message = "Please provide a valid email")
     private String email;
 
     @Column(name = "dob")
     private LocalDate dob;
 
     @Column(name = "phone")
+    @NotBlank(message = "Number phone is required")
     private String phone;
 
     @Column(name = "role")

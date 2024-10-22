@@ -1,15 +1,33 @@
 package com.tuongpc.my_project.dto;
 
+import com.tuongpc.my_project.service.validator.RegisterChecked;
+import com.tuongpc.my_project.service.validator.StrongPassword;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@RegisterChecked
 public class UsersDTO {
     private Integer id;
     private String username;
-    private String passwordHash;
+
+    @NotBlank(message = "Password is required")
+    @StrongPassword
+    private String password;
+    private String confirmPassword;
+
+    @NotBlank(message = "Full name is required")
     private String fullName;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Please provide a valid email")
     private String email;
+
     private LocalDate dob;
+
+    @NotBlank(message = "Number phone is required")
     private String phone;
     private String role;
     private Byte isActive;
@@ -33,12 +51,20 @@ public class UsersDTO {
         this.username = username;
     }
 
-    public String getPasswordHash() {
-        return this.passwordHash;
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFullName() {

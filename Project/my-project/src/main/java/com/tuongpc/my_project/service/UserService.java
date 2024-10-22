@@ -1,5 +1,6 @@
 package com.tuongpc.my_project.service;
 
+import com.tuongpc.my_project.dto.UsersDTO;
 import com.tuongpc.my_project.entity.Users;
 import com.tuongpc.my_project.repository.UserRepository;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
@@ -23,5 +24,13 @@ public class UserService{
     }
     public Users getUserByEmail(String email){
         return this.userRepository.findByEmail(email);
+    }
+    public Users UserDTOtoUser(UsersDTO registerDTO) {
+        Users user = new Users();
+        user.setFullName(registerDTO.getFullName());
+        user.setEmail(registerDTO.getEmail());
+        user.setPhone(registerDTO.getPhone());
+        user.setPasswordHash(registerDTO.getPassword());
+        return user;
     }
 }
